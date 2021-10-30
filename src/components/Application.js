@@ -4,7 +4,7 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "helpers/selectors";
 
 export default function Application() {
 
@@ -16,6 +16,7 @@ export default function Application() {
   });
   //setState({ ...state, day: "Tuesday" });
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const interviewers = getInterviewersForDay(state, state.day);
   const setDay = day => setState({ ...state, day });
   //const setDays = (days) => setState(prev => ({ ...prev, days }));
 
@@ -24,9 +25,10 @@ export default function Application() {
       const interview = getInterview(state, appointment.interview);
 
       //try not to use spread operator much because it can create confusion and leads to undesired result
+      //in case of undesired result, do console log spread operator if present to get hints 
       return (
       <Appointment
-        key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} />)
+        key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} interviewers={interviewers} />)
        });
 
     useEffect(() => {
