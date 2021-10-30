@@ -22,19 +22,12 @@ export default function Application() {
   const parsedAppointments = dailyAppointments
     .map(appointment => {
       const interview = getInterview(state, appointment.interview);
-      //console.log("interview", interview);
 
+      //try not to use spread operator much because it can create confusion and leads to undesired result
       return (
       <Appointment
-        key={appointment.id} interview={interview} {...interview} {...appointment} />)
-      });
-
-    // useEffect(() => {
-    //   axios.get("/api/days")
-    //   .then(response => {
-    //     //setDays([...response.data]);
-    //   })
-    // },[]);
+        key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} />)
+       });
 
     useEffect(() => {
       Promise.all([
