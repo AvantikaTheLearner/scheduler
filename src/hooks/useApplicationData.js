@@ -22,9 +22,8 @@ export default function useApplicationData() {
       [id]: appointment,
     };
     return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
-      const days = updateSpots("create");
-      setState({ ...state, days, appointments });
-
+      const days = spotsLeftForDay(state.day, appointments);
+      setState((prev) => ({ ...prev, days, appointments }));
     });
   }
 
@@ -38,43 +37,25 @@ export default function useApplicationData() {
       [id]: appointment,
     };
     return axios.delete(`/api/appointments/${id}`).then(() => {
-      const days = updateSpots();
-      setState({ ...state, days, appointments });
+      const days = spotsLeftForDay(state.day, appointments);
+      setState((prev) => ({ ...prev, days, appointments }));
     });
   }
+  function spotsLeftForDay(day, appointments) {
+    let count = 0;
+    const filteredDay = state.days.find((d) => d.name === day);
 
-  // useEffect(() => {
-  //   if(Object.keys(state.appointments).length) {
-  //     spotsLeftForDay(state.day);
-  //   }
-  // },[state.appointments]);
-
-  // function spotsLeftForDay(day) {
-  //   let count = 0;
-  //   const filteredDay = state.days.find((d) => d.name === day);
-
-  //   for (const elem of filteredDay.appointments) {
-  //     if (state.appointments[elem].interview === null) count++;
-  //   }
-  //   const updatedDay = {
-  //     ...filteredDay,
-  //     spots: count,
-  //   };
-  //   const days = state.days.map((day) => day.id === filteredDay.id ? updatedDay : day);
-  //   setState({ ...state, days });
-  //   // return axios.put(`/api/days/${filteredDay.id}`, { spots }).then(() => {
-  //   //   setState({ ...state, days });
-  //   // });
-  // }
-  function updateSpots(requestType) {
-    const dayIndex = state.days.findIndex((d) => d.name === state.day);
-    const days = state.days;
-    if (requestType === "create") {
-      days[dayIndex].spots -= 1;
-    } else {
-      days[dayIndex].spots += 1;
-      }
-      return days;
+    for (const elem of filteredDay.appointments) {
+      if (appointments[elem].interview === null) count++;
+    }
+    const updatedDay = {
+      ...filteredDay,
+      spots: count,
+    };
+    const days = state.days.map((day) =>
+      day.id === filteredDay.id ? updatedDay : day
+    );
+    return days;
   }
 
   useEffect(() => {
