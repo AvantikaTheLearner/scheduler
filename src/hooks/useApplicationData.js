@@ -22,7 +22,7 @@ export default function useApplicationData() {
       [id]: appointment,
     };
     return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
-      const days = spotsLeftForDay(state.day, appointments);
+      const days = spotsLeftForDay(state, appointments);
       setState((prev) => ({ ...prev, days, appointments }));
     });
   }
@@ -37,13 +37,13 @@ export default function useApplicationData() {
       [id]: appointment,
     };
     return axios.delete(`/api/appointments/${id}`).then(() => {
-      const days = spotsLeftForDay(state.day, appointments);
+      const days = spotsLeftForDay(state, appointments);
       setState((prev) => ({ ...prev, days, appointments }));
     });
   }
-  function spotsLeftForDay(day, appointments) {
+  function spotsLeftForDay(state, appointments) {
     let count = 0;
-    const filteredDay = state.days.find((d) => d.name === day);
+    const filteredDay = state.days.find((d) => d.name === state.day);
 
     for (const elem of filteredDay.appointments) {
       if (appointments[elem].interview === null) count++;
