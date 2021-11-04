@@ -1,5 +1,7 @@
 # Interview Scheduler
 
+Interview Scheduler is a client-side single page application (SPA) built using React that allows users to book and cancel interviews. This application communicates with an API server over HTTP, using the JSON format. Also, data is persisted by the API server using a PostgreSQL database.
+
 ## Setup
 
 Install dependencies with `npm install`.
@@ -21,3 +23,18 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Dependencies
+
+- axios
+- @testing-library/react-hooks
+- react-test-renderer ^16.9.0
+
+## Final Product
+
+!["Screenshot of booking new appointment with validation rule"](https://github.com/AvantikaTheLearner/tweeter/blob/master/docs/Creating-new-tweet.png?raw=true)
+
+!["Screenshot of Slots available for booking"](https://github.com/AvantikaTheLearner/tweeter/blob/master/docs/Validation-error.png?raw=true)
+
+!["Screenshot of deleting/cancelling an appointment"](https://github.com/AvantikaTheLearner/tweeter/blob/master/docs/hovering-over-tweet.png?raw=true)
+
