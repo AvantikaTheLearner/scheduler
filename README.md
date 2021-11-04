@@ -32,9 +32,9 @@ npm run storybook
 
 ## Final Product
 
-!["Screenshot of booking new appointment with validation rule"](https://github.com/AvantikaTheLearner/tweeter/blob/master/docs/Creating-new-tweet.png?raw=true)
+!["Screenshot of booking new appointment with validation rule"](https://github.com/AvantikaTheLearner/scheduler/blob/master/docs/Validation-while-booking-new-appointment.png?raw=true)
 
-!["Screenshot of Slots available for booking"](https://github.com/AvantikaTheLearner/tweeter/blob/master/docs/Validation-error.png?raw=true)
+!["Screenshot of Slots available for booking"](https://github.com/AvantikaTheLearner/scheduler/blob/master/docs/Available-slots-for-booking.png?raw=true)
 
-!["Screenshot of deleting/cancelling an appointment"](https://github.com/AvantikaTheLearner/tweeter/blob/master/docs/hovering-over-tweet.png?raw=true)
+!["Screenshot of deleting/cancelling an appointment"](https://github.com/AvantikaTheLearner/scheduler/blob/master/docs/Deleting-appointment.png?raw=true)
 
